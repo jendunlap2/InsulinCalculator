@@ -1,0 +1,62 @@
+<script src="{{ url_for('static', filename='calculator.js') }}"></script>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h4 class="display-4 pb-3">My Insulin Calculator<h4>
+    <h5>Enter the amount of carbs to consume, the meal time, and your current blood glucose reading</h5>
+    
+    <div class="row">
+        <div class="col-6">
+            <form action="">
+                <fieldset>
+                <div class="mb-3">
+                <label for="carbCount" class="form-label">Total Carbohydrates (g)</label>
+                <input type="text" class="form-control" id="carbCount" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                <label for="currentBG" class="form-label">Current Blood Glucose reading</label>
+                <input type="text" class="form-control" id="currentBG">
+                </div>
+                <label for="currentBG" class="form-label">Meal Time</label>
+                <select class="form-select" aria-label="Default select example" id="meal">
+                    <option selected>Please choose a meal time</option>
+                    <option value="1">Breakfast</option>
+                    <option value="2">Lunch</option>
+                    <option value="3">Dinner</option>
+                </select>
+                <input type="submit" onclick="calculateTotal(); return false;" class="btn btn-primary my-3"></input>
+                <div class="d-none">
+                    <input id="bfastInsulin" value="{{ current_user.breakfast_insulin }}"></input>
+                    <input id="bfastCarb" value="{{ current_user.breakfast_carb }}"></input>
+                    <input id="lunchInsulin" value="{{ current_user.lunch_insulin }}"></input>
+                    <input id="lunchCarb" value="{{ current_user.lunch_carb }}"></input>
+                    <input id="dinnerInsulin" value="{{ current_user.dinner_insulin }}"></input>
+                    <input id="dinnerCarb" value="{{ current_user.dinner_carb }}"></input>
+                    <input id="c_150_199" value="{{ current_user.correction_150_199 }}"></input>
+                    <input id="c_200_249" value="{{ current_user.correction_200_249 }}"></input>
+                    <input id="c_250_299" value="{{ current_user.correction_250_299 }}"></input>
+                    <input id="c_300_349" value="{{ current_user.correction_300_349 }}"></input>
+                    <input id="c_350_399" value="{{ current_user.correction_350_399 }}"></input>
+                    <input id="c_400" value="{{ current_user.correction_400 }}"></input>
+                </div>
+            </form>
+        </div>
+        
+        <div class="col-6">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h1 class="card-title" id="insulinTotal"></h1>
+                    <h6 class="card-title"  id="mealInsulinTotal"></h6>
+                </div>
+            </div>
+            </fieldset>
+        </div>
+    </div>
+            
+            
+
+    
+
+
+{% endblock %}

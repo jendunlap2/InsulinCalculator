@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+  <h3 class="display-4 pb-3">Hello {{ current_user.username }}!</h3>
+    <div class="row">
+      <div class="col-6">
+        <h5 class="display-6">My Account</h5>
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Meal Time</th>
+              <th scope="col">Insulin to Carb Ratio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Breakfast</th>
+              <td>{{ current_user.breakfast_insulin }} : {{ current_user.breakfast_carb }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Lunch</th>
+              <td>{{ current_user.lunch_insulin }} : {{ current_user.lunch_carb }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Dinner</th>
+              <td>{{ current_user.dinner_insulin }} : {{ current_user.dinner_carb }}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Current Blood Glucose</th>
+              <th scope="col">Correction Factor (units insulin)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">150-199</th>
+              <td>{{ current_user.correction_150_199 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">200-249</th>
+              <td>{{ current_user.correction_200_249 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">250-299</th>
+              <td>{{ current_user.correction_250_299 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">300-349</th>
+              <td>{{ current_user.correction_300_349 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">350-399</th>
+              <td>{{ current_user.correction_350_399 }}</td>
+            </tr>
+            <tr>
+              <th scope="row">400 and above</th>
+              <td>{{ current_user.correction_400 }}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <div class="card border-0 m-4" style="width: 12rem;">
+          <a href="{{ url_for('insulinCalculator') }}"><img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/128/000000/external-syringe-medical-kiranshastry-gradient-kiranshastry-1.png" class="card-img-top p-4" alt="..."></a>
+          <div class="card-body">
+            <a class="text-decoration-none" href="{{ url_for('insulinCalculator') }}"><h5 class="card-title text-center">Insulin Calculator</h5></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="{{ url_for('edit_account_info') }}"><button type="button" class="btn btn-primary">Edit My Info</button></a>
+  
+
+
+{% else %}
+
+  <h1 class="display-4 pb-3">Insulin Calculator</h1>
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <div class="card border-0 m-4" style="width: 12rem;">
+            <a href="{{ url_for('login') }}"><img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/128/000000/external-blood-test-medical-kiranshastry-gradient-kiranshastry.png" class="card-img-top p-4" alt="..."></a>
+              <div class="card-body">
+                <a class="text-decoration-none" href="{{ url_for('login') }}"><h5 class="card-title text-center">Sign In</h5></a>
+              </div>
+            </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-0 m-4" style="width: 12rem;">
+              <a href="{{ url_for('register') }}"><img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/128/000000/external-user-medical-kiranshastry-gradient-kiranshastry.png" class="card-img-top p-4" alt="..."></a>
+              <div class="card-body">
+                <a class="text-decoration-none" href="{{ url_for('register') }}"><h5 class="card-title text-center">Register</h5></a>
+              </div>
+            </div>
+        </div>
+      </div>
+
+{% endif %}
+    
+{% endblock %}

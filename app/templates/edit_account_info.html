@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3 class="display-4 pb-3">Edit My Account Info</h3>
+
+    <form action ="" method='post' class="w-50">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <h5 class="pt-3">My Ratios</h5>
+            <div class="row g-2 pb-2">
+                <h6 class="pt-3 mb-0">Breakfast</h6>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <fieldset>
+                            {{ form.breakfast_insulin.label }}
+                            {{ form.breakfast_insulin(class='form-control', placeholder='Units of Insulin', value=current_user.breakfast_insulin) }}
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <fieldset>
+                            {{ form.breakfast_carb.label }}
+                            {{ form.breakfast_carb(class='form-control', placeholder='Grams of Carbohydrates', value=current_user.breakfast_carb) }}
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-2 pb-2">
+                <h6 class="pt-3 mb-0">Lunch</h6>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <fieldset>
+                            {{ form.lunch_insulin.label }}
+                            {{ form.lunch_insulin(class='form-control', placeholder='Units of Insulin', value=current_user.lunch_insulin) }}
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <fieldset>
+                            {{ form.lunch_carb.label }}
+                            {{ form.lunch_carb(class='form-control', placeholder='Grams of Carbohydrates', value=current_user.lunch_carb) }}
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-2 pb-2">
+                <h6 class="pt-3 mb-0">Dinner</h6>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <fieldset>
+                            {{ form.dinner_insulin.label }}
+                            {{ form.dinner_insulin(class='form-control', placeholder='Units of Insulin', value=current_user.dinner_insulin) }}
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <fieldset>
+                            {{ form.dinner_carb.label }}
+                            {{ form.dinner_carb(class='form-control', placeholder='Grams of Carbohydrates', value=current_user.dinner_carb) }}
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <h5 class="pt-3">My Correction Factors</h5>
+            <fieldset>
+                {{ form.correction_150_199.label }}
+                {{ form.correction_150_199(class='form-control', placeholder='Units Insulin', value=current_user.correction_150_199) }}
+            </fieldset>
+            <fieldset>
+                {{ form.correction_200_249.label }}
+                {{ form.correction_200_249(class='form-control', placeholder='Units Insulin', value=current_user.correction_200_249) }}
+            </fieldset>
+            <fieldset>
+                {{ form.correction_250_299.label }}
+                {{ form.correction_250_299(class='form-control', placeholder='Units Insulin', value=current_user.correction_250_299) }}
+            </fieldset>
+            <fieldset>
+                {{ form.correction_300_349.label }}
+                {{ form.correction_300_349(class='form-control', placeholder='Units Insulin', value=current_user.correction_300_349) }}
+            </fieldset>
+            <fieldset>
+                {{ form.correction_350_399.label }}
+                {{ form.correction_350_399(class='form-control', placeholder='Units Insulin', value=current_user.correction_350_399) }}
+            </fieldset>
+            <fieldset>
+                {{ form.correction_400.label }}
+                {{ form.correction_400(class='form-control', placeholder='Units Insulin', value=current_user.correction_400) }}
+            </fieldset>
+        </div>
+        {{ form.submit(class='btn btn-primary my-3') }}
+    </form>
+
+
+{% endblock %}
